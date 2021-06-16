@@ -8,6 +8,7 @@ Plugin wordpress untuk memanajemen order
 - Install wordpress
 - Install plugin ini dan aktifkan
 - Import SQL file tabel.sql untuk membuat tabel tempat menyimpan data PBB
+- Direkomendasikan menggunakan theme *Astra* by https://wpastra.com/about/ 
 
 ### Fitur:
 - Gunakan shortcode ```[dasboard_order]``` di post atau page untuk menampilkan dasboard manajemen order
