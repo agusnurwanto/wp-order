@@ -1,16 +1,16 @@
-<?php
-
-/**
- * Provide a public-facing view for the plugin
- *
- * This file is used to markup the public-facing aspects of the plugin.
- *
- * @link       https://github.com/agusnurwanto
- * @since      1.0.0
- *
- * @package    Wp_Order
- * @subpackage Wp_Order/public/partials
- */
-?>
-
-<!-- This file should primarily consist of HTML with a little bit of PHP. -->
+<div class="wrap-order">
+	<table>
+		<thead>
+			<tr>
+				<th>No. of Order</th>
+				<th>Invoice Number</th>
+				<th>Date</th>
+				<th>Customer</th>
+				<th>Payment</th>
+				<th>Fulfillment Status</th>
+				<th>Total</th>
+			</tr>
+		</thead>
+		<tbody></tbody>
+	</table>
+</div>

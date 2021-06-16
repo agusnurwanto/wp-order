@@ -156,7 +156,6 @@ class Wp_Order {
 
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
-		add_shortcode('dasboard_order', array($plugin_admin, 'dasboard_order'));
 
 	}
 
@@ -173,6 +172,7 @@ class Wp_Order {
 
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
+		add_shortcode('dasboard_order', array($plugin_public, 'dasboard_order'));
 
 	}
 
