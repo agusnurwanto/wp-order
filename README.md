@@ -16,6 +16,13 @@ Plugin wordpress untuk memanajemen order
 ### Permintaan fitur:
 - User umum bisa request penambahan fitur dengan membuat issue
 
+### Screenshoot
+- **List Order**
+![List Order](https://raw.githubusercontent.com/agusnurwanto/wp-order/master/public/images/img2.png)
+- **Create Order**
+![Create Order](https://raw.githubusercontent.com/agusnurwanto/wp-order/master/public/images/img1.png)
+
+
 ### Video Tutorial 
 - ...
 
