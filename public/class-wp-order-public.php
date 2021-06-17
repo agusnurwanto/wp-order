@@ -120,7 +120,22 @@ class Wp_Order_Public {
 		  	"recordsFiltered" => 0,
 		  	"data" => array()
 		);
-		$data = $wpdb->get_results('select * from data_order', ARRAY_A);
+		$order_by = '';
+		if(!empty($_POST['order'][0]['column'])){
+			if($_POST['order'][0]['column'] == 2){
+				$order_by = 'order by created_date '.$_POST['order'][0]['dir'];
+			}else if($_POST['order'][0]['column'] == 3){
+				$order_by = 'order by customer '.$_POST['order'][0]['dir'];
+			}
+		}
+		$search = '';
+		if(!empty($_POST['search']['value'])){
+			$val_search = '%'.$_POST['search']['value'].'%';
+			$search = $wpdb->prepare('where invoice_number like \'%s\' or customer like \'%s\'', $val_search, $val_search);
+		}
+
+		$data = $wpdb->get_results('select * from data_order '.$search.' '.$order_by, ARRAY_A);
+		$ret['sql'] = $wpdb->last_query;
 		foreach ($data as $k => $v) {
 			$v['no'] = $k+1;
 			$ret['data'][] = $v;
