@@ -1,5 +1,5 @@
 jQuery(document).ready(function($){
-	var table_order = $('#table-order').DataTable({
+    var option_table = {
         serverSide: true,
         processing: true,
         pageLength: 20,
@@ -11,7 +11,7 @@ jQuery(document).ready(function($){
             url: custom_script.ajax_url,
             type: 'POST',
             data: {
-            	action: 'get_order'
+                action: 'get_order'
             }
         },
         columns: [
@@ -23,10 +23,17 @@ jQuery(document).ready(function($){
             {data: 'fulfillment_status', name: 'fulfillment_status', orderable: false, searchable: false, className:'text-center'},
             {data: 'total_amount', name: 'total_amount', orderable: false, searchable: false, className: 'text-center'},
         ],
-    });
+    };
+    window.table_order = $('#table-order').DataTable(option_table);
 
     jQuery('#create-order').on('click', function(){
-    	jQuery('#mod-create-order').modal('show');
+        jQuery('#mod-create-order').modal('show');
+    });
+
+    jQuery('select[name="payment_status_filter"]').on('change', function(){
+        table_order.destroy();
+        option_table.ajax.data.filter = jQuery(this).val();
+        window.table_order = $('#table-order').DataTable(option_table);
     });
 
     jQuery('#save_order').on('click', function(){

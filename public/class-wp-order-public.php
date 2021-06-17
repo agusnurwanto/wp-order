@@ -128,10 +128,17 @@ class Wp_Order_Public {
 				$order_by = 'order by customer '.$_POST['order'][0]['dir'];
 			}
 		}
-		$search = '';
+		$search = array();
 		if(!empty($_POST['search']['value'])){
 			$val_search = '%'.$_POST['search']['value'].'%';
-			$search = $wpdb->prepare('where invoice_number like \'%s\' or customer like \'%s\'', $val_search, $val_search);
+			$search[] = $wpdb->prepare('invoice_number like \'%s\' or customer like \'%s\'', $val_search, $val_search);
+		}
+		if(!empty($_POST['filter']) && $_POST['filter']!='All'){
+			$search[] = $wpdb->prepare('payment_status = \'%s\'', $_POST['filter']);
+		}
+		$search = implode(' and ', $search);
+		if(!empty($search)){
+			$search = 'where '.$search;
 		}
 
 		$data = $wpdb->get_results('select * from data_order '.$search.' '.$order_by, ARRAY_A);

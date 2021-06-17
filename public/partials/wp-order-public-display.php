@@ -51,6 +51,18 @@
     <div style="padding: 10px 0; text-align: center;">
     	<button class="btn btn-primary" id="create-order">Create Order</button>
     </div>
+    <div style="padding: 10px 0; text-align: right;">
+    	<form name="form-order" id="form-order" class="form-inline">
+            <div class="form-group">
+                <label class="control-label">Filter Payment Status:</label>
+		    	<select class="form-control" name="payment_status_filter">
+		    		<option selected>All</option>
+		    		<option>Unpaid</option>
+		    		<option>Fully paid</option>
+		    	</select>
+            </div>
+        </form>
+    </div>
 
 	<table id="table-order">
 		<thead>
