@@ -128,4 +128,80 @@ class Wp_Order_Public {
 		die(json_encode($ret));
 	}
 
+	function create_order(){
+		global $wpdb;
+		$ret = array(
+			'status' => 'success',
+			'msg' => 'Success create order!'
+		);
+		if(!empty($_POST)){
+			$invoice_number = '';
+			if(!empty($_POST['invoice_number'])){
+				$invoice_number = $_POST['invoice_number'];
+			}else{
+				$ret['status'] = 'error';
+				$ret['msg'] = 'Invoice Number is required!';
+			}
+			if($ret['status'] != 'error'){
+				$created_date = '';
+				if(!empty($_POST['created_date'])){
+					$created_date = $_POST['created_date'];
+					$created_date = date('Y-m-d H:i:s', strtotime($created_date));
+				}else{
+					$ret['status'] = 'error';
+					$ret['msg'] = 'Created Date is required!';
+				}
+			}
+			if($ret['status'] != 'error'){
+				$customer = '';
+				if(!empty($_POST['customer'])){
+					$customer = $_POST['customer'];
+				}else{
+					$ret['status'] = 'error';
+					$ret['msg'] = 'Customer is required!';
+				}
+			}
+			if($ret['status'] != 'error'){
+				$total_amount = '';
+				if(!empty($_POST['total_amount'])){
+					$total_amount = $_POST['total_amount'];
+				}else{
+					$ret['status'] = 'error';
+					$ret['msg'] = 'Total Amount is required!';
+				}
+			}
+			if($ret['status'] != 'error'){
+				$payment_status = '';
+				if(!empty($_POST['payment_status'])){
+					$payment_status = $_POST['payment_status'];
+				}else{
+					$ret['status'] = 'error';
+					$ret['msg'] = 'Payment Status is required!';
+				}
+			}
+			if($ret['status'] != 'error'){
+				$fulfillment_status = '';
+				if(!empty($_POST['fulfillment_status'])){
+					$fulfillment_status = $_POST['fulfillment_status'];
+				}else{
+					$ret['status'] = 'error';
+					$ret['msg'] = 'Fulfillment Status is required!';
+				}
+			}
+			if($ret['status'] != 'error'){
+				$wpdb->query($wpdb->prepare('
+					INSERT INTO data_order 
+						(invoice_number, created_date, customer, payment_status, fulfillment_status, total_amount) 
+					VALUES 
+						(%s, %s, %s, %s, %s, %d)', 
+					$invoice_number, $created_date, $customer, $payment_status, $fulfillment_status, $total_amount
+				));
+			}
+		}else{
+			$ret['status'] = 'error';
+			$ret['msg'] = 'Type request tidak dikenali!';
+		}
+		die(json_encode($ret));
+	}
+
 }
