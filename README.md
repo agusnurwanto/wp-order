@@ -7,7 +7,7 @@ Plugin wordpress untuk memanajemen order
 ### Cara install plugin:
 - Install wordpress
 - Install plugin ini dan aktifkan
-- Import SQL file tabel.sql untuk membuat tabel tempat menyimpan data PBB
+- Import SQL file tabel.sql untuk membuat tabel tempat menyimpan data order
 - Direkomendasikan menggunakan theme *Astra* by https://wpastra.com/about/ 
 
 ### Fitur:
@@ -24,7 +24,7 @@ Plugin wordpress untuk memanajemen order
 
 
 ### Video Tutorial 
-- ...
+- Penggunaan plugin wp-order https://youtu.be/rNNlcVuqY70
 
 ### Referensi
 - https://drive.google.com/file/d/1n6wpjt1ehy_J2AOlA4XJcQiDwSnC3HgQ/view?usp=sharing
