@@ -1,32 +1,31 @@
-(function( $ ) {
-	'use strict';
+jQuery(document).ready(function($){
+	$('#table-order').DataTable({
+        serverSide: true,
+        processing: true,
+        pageLength: 20,
+        lengthMenu: [
+            [20, 50, 100, -1],
+            [20, 50, 100, "All"] // change per page values here
+        ],
+        ajax: {
+            url: custom_script.ajax_url,
+            type: 'POST',
+            data: {
+            	action: 'get_order'
+            }
+        },
+        columns: [
+            {data: 'no', name: 'no', width: '140px', className:'text-center'},
+            {data: 'invoice_number', name: 'invoice_number', className:'text-center'},
+            {data: 'created_date', width: '140px', name: 'created_date', className:'text-center'},
+            {data: 'customer', name: 'customer', className:'text-center'},
+            {data: 'payment_status', name: 'payment_status', className:'text-center'},
+            {data: 'fulfillment_status', name: 'fulfillment_status', className:'text-center'},
+            {data: 'total_amount', name: 'total_amount', orderable: false, searchable: false, className: 'text-center'},
+        ],
+    });
 
-	/**
-	 * All of the code for your public-facing JavaScript source
-	 * should reside in this file.
-	 *
-	 * Note: It has been assumed you will write jQuery code here, so the
-	 * $ function reference has been prepared for usage within the scope
-	 * of this function.
-	 *
-	 * This enables you to define handlers, for when the DOM is ready:
-	 *
-	 * $(function() {
-	 *
-	 * });
-	 *
-	 * When the window is loaded:
-	 *
-	 * $( window ).load(function() {
-	 *
-	 * });
-	 *
-	 * ...and/or other possibilities.
-	 *
-	 * Ideally, it is not considered best practise to attach more than a
-	 * single DOM-ready or window-load handler for a particular page.
-	 * Although scripts in the WordPress core, Plugins and Themes may be
-	 * practising this, we should strive to set a better example in our own work.
-	 */
-
-})( jQuery );
+    jQuery('#create-order').on('click', function(){
+    	jQuery('#mod-create-order').modal('show');
+    })
+});

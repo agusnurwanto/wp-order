@@ -172,6 +172,8 @@ class Wp_Order {
 
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
+		$this->loader->add_action( 'wp_ajax_get_order',  $plugin_public, 'get_order');
+		$this->loader->add_action( 'wp_ajax_nopriv_get_order',  $plugin_public, 'get_order');
 		add_shortcode('dasboard_order', array($plugin_public, 'dasboard_order'));
 
 	}

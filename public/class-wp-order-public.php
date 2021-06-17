@@ -73,6 +73,8 @@ class Wp_Order_Public {
 		 * class.
 		 */
 
+		wp_enqueue_style( $this->plugin_name.'-bootstrap', plugin_dir_url( __FILE__ ) . 'css/bootstrap.min.css', array(), $this->version, 'all' );
+		wp_enqueue_style( $this->plugin_name.'-dataTables', plugin_dir_url( __FILE__ ) . 'css/jquery.dataTables.min.css', array(), $this->version, 'all' );
 		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/wp-order-public.css', array(), $this->version, 'all' );
 
 	}
@@ -95,8 +97,10 @@ class Wp_Order_Public {
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
-
+		wp_enqueue_script( $this->plugin_name.'-bootstrap', plugin_dir_url( __FILE__ ) . 'js/bootstrap.min.js', array( 'jquery' ), $this->version, false );
+		wp_enqueue_script( $this->plugin_name.'-dataTables', plugin_dir_url( __FILE__ ) . 'js/jquery.dataTables.min.js', array( 'jquery' ), $this->version, false );
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/wp-order-public.js', array( 'jquery' ), $this->version, false );
+		wp_localize_script( $this->plugin_name, 'custom_script', array( 'ajax_url' => admin_url( 'admin-ajax.php' ) ) );
 
 	}
 
@@ -106,6 +110,22 @@ class Wp_Order_Public {
 			return '';
 		}
 		require_once plugin_dir_path(dirname(__FILE__)) . 'public/partials/wp-order-public-display.php';
+	}
+
+	function get_order(){
+		global $wpdb;
+		$ret = array(
+			"draw" => $_POST['draw'],
+		  	"recordsTotal" => 0,
+		  	"recordsFiltered" => 0,
+		  	"data" => array()
+		);
+		$data = $wpdb->get_results('select * from data_order', ARRAY_A);
+		foreach ($data as $k => $v) {
+			$v['no'] = $k+1;
+			$ret['data'][] = $v;
+		}
+		die(json_encode($ret));
 	}
 
 }

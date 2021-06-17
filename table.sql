@@ -6,6 +6,7 @@ CREATE TABLE `data_order` (
   `id` int(11) NOT NULL,
   `invoice_number` varchar(50) NOT NULL,
   `created_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `customer` text NOT NULL DEFAULT '',
   `payment_status` enum('Unpaid','Fully paid') NOT NULL DEFAULT 'Unpaid',
   `fulfillment_status` enum('Unfulfilled','Fulfilled') NOT NULL DEFAULT 'Unfulfilled',
   `total_amount` double(20,0) NOT NULL
